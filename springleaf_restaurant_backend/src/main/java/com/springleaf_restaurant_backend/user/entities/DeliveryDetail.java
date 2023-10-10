@@ -15,10 +15,10 @@ public class DeliveryDetail {
     private Long deliveryDetailId;
 
     @Column(name = "delivery_id")
-    private Long deliveryId;
+    private Long delivery;
 
     @Column(name = "ingredient_id")
-    private Long ingredientId;
+    private Long ingredient;
 
     @Column(name = "quantity")
     private Integer quantity;

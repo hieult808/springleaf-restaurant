@@ -1,22 +1,20 @@
 package com.springleaf_restaurant_backend.user.entities;
 
-import lombok.*;
 import jakarta.persistence.*;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "Role_Functions")
-public class RoleFunction {
+@Entity 
+@Builder
+@Table(name = "Majors")
+public class Major {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "role_function_id")
-    private Integer roleFunctionId;
-
-    @Column(name = "role_id")
-    private Integer roleId;
-
     @Column(name = "major_id")
     private Integer majorId;
+
+    @Column(name = "major_name")
+    private String majorName;
 }

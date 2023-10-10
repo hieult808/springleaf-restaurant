@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Order_Thresholds")
+@Table(name = "Order_Threshold")
 public class OrderThreshold {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class OrderThreshold {
     @Column(name = "ingredient_id")
     private Long ingredient;
 
-    @Column(name = "inventory_branch_id")
+    @Column(name = "inventory_brand_id")
     private Long inventoryBranch;
 
     @Column(name = "inventory_id")

@@ -15,12 +15,12 @@ public class InventoryBranch {
     private Long inventoryBrandId;
 
     @Column(name = "ingredient_id")
-    private Long ingredientId;
+    private Long ingredient;
 
     @Column(name = "supplier_id")
-    private Long supplierId;
+    private Long supplier;
 
     @Column(name = "restaurant_id")
-    private Long restaurantId;
+    private Long restaurant;
 
 }

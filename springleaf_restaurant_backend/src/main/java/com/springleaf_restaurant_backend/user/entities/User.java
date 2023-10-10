@@ -2,12 +2,16 @@ package com.springleaf_restaurant_backend.user.entities;
 
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.springleaf_restaurant_backend.security.token.Token;
+import com.springleaf_restaurant_backend.user.repositories.RoleRepository;
 
 import jakarta.persistence.*;
 
@@ -18,7 +22,7 @@ import jakarta.persistence.*;
 @Builder
 @Table(name = "Users")
 public class User implements UserDetails {
-    @Id
+     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -29,8 +33,8 @@ public class User implements UserDetails {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "password")
     private String password;
@@ -51,21 +55,26 @@ public class User implements UserDetails {
     private String managerId;
 
     @Column(name = "restaurant_brach_id")
-    private Long restaurant;
+    private Long restaurantBrachId;
 
     @Column(name = "role_id")
-    @Enumerated(EnumType.STRING)
-    // private Role role;
-    private RoleEnum role;
+    private Integer roleId;
 
-    // @Override
-    // public Collection<? extends GrantedAuthority> getAuthorities() {
-    // return List.of(new SimpleGrantedAuthority(role.getRoleName()));
-    // }
+    @Transient
+    private String roleName;
+
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        // Sử dụng thông tin roleName để lấy danh sách quyền
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        
+        // Thêm quyền ROLE_<role_name> vào danh sách authorities
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + roleName)); 
+    
+        return authorities;
     }
 
     @Override
@@ -75,7 +84,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override
@@ -97,4 +106,46 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    // code cũ
+
+    // @Override
+    // public Collection<? extends GrantedAuthority> getAuthorities() {
+    // return List.of(new SimpleGrantedAuthority(role.getRoleName()));
+    // }
+
+    // @Override
+    // public Collection<? extends GrantedAuthority> getAuthorities() {
+    //     return List.of(new SimpleGrantedAuthority(role.name()));
+    // }
+
+    // @Override
+    // public String getPassword() {
+    //     return password;
+    // }
+
+    // @Override
+    // public String getUsername() {
+    //     return userName;
+    // }
+
+    // @Override
+    // public boolean isAccountNonExpired() {
+    //     return true;
+    // }
+
+    // @Override
+    // public boolean isAccountNonLocked() {
+    //     return true;
+    // }
+
+    // @Override
+    // public boolean isCredentialsNonExpired() {
+    //     return true;
+    // }
+
+    // @Override
+    // public boolean isEnabled() {
+    //     return true;
+    // }
 }

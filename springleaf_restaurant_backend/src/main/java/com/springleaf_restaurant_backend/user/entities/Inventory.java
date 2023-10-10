@@ -15,9 +15,9 @@ public class Inventory {
     private Long inventoryId;
 
     @Column(name = "ingredient_id")
-    private Long ingredientId;
+    private Long ingredient;
 
     @Column(name = "supplier_id")
-    private Long supplierId;
+    private Long supplier;
 
 }
