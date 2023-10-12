@@ -10,13 +10,12 @@ import jakarta.persistence.*;
 @Table(name = "Role_Functions")
 public class RoleFunction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_function_id")
-    private Integer roleFunctionId;
+    private String roleFunctionId;
+
+    // @Column(name = "role_function_name")
+    // private String roleFunctionName;
 
     @Column(name = "role_id")
-    private Integer roleId;
-
-    @Column(name = "major_id")
-    private Integer majorId;
+    private String role;
 }

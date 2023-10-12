@@ -1,4 +1,4 @@
-package com.springleaf_restaurant_backend.security.config;
+package com.springleaf_restaurant_backend.config;
 
 import java.util.Arrays;
 
