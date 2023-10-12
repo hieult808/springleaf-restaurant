@@ -2,15 +2,15 @@ export interface User {
     userId: number;
     firstName: string;
     lastName: string;
-    userName: string;
+    username: string;
     password: string;
     phone: string;
     email: string;
     address: number;
     image: string;
-    managerId: string;
+    managerId: number;
     restaurant: number;
-    role: string;
+    roleId: number;
 
 
 }

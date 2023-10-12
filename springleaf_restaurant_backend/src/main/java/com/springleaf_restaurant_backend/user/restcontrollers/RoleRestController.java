@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springleaf_restaurant_backend.security.repositories.RoleRepository;
 import com.springleaf_restaurant_backend.user.entities.Role;
-import com.springleaf_restaurant_backend.user.repositories.RoleRepository;
 
 @RestController
 @RequestMapping("/api")
