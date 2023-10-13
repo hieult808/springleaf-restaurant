@@ -39,7 +39,7 @@ public class AuthenticationService {
   public AuthenticationResponse register(RegisterRequest request) {
     Role role = roleRepository.findByRoleId(request.getRoleId());
     var user = User.builder()
-        .username(request.getUserName())
+        .username(request.getUsername())
         .password(passwordEncoder.encode(request.getPassword()))
         .roleId(1)
         .build();
@@ -69,6 +69,7 @@ public class AuthenticationService {
     return AuthenticationResponse.builder()
         .accessToken(jwtToken)
             .refreshToken(refreshToken)
+            .user(user)
         .build();
   }
 
@@ -85,14 +86,18 @@ public class AuthenticationService {
 
   private void revokeAllUserTokens(User user) {
     var validUserTokens = tokenRepository.findAllValidTokensByUserId(user.getUserId());
-    if (((HttpHeaders) validUserTokens).isEmpty())
-      return;
+    
+    if (validUserTokens.isEmpty())
+        return;
+    
     validUserTokens.forEach(token -> {
-      token.setExpired(true);
-      token.setRevoked(true);
+        token.setExpired(true);
+        token.setRevoked(true);
     });
+    
     tokenRepository.saveAll(validUserTokens);
-  }
+}
+
 
   public void refreshToken(
           HttpServletRequest request,

@@ -38,27 +38,22 @@ public class SecurityConfiguration {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     List<Role> allRoles = roleRepository.findAll();
     List<String> roleNames = allRoles.stream()
-            .map(Role::getRoleName)
+            .map(Role::getRoleSa)
             .collect(Collectors.toList());
     http
         .csrf()
         .disable()
         .authorizeHttpRequests()
         .requestMatchers(
-          "/api/user",
-          "/api/**"
+          "/api/**",
+          "/api/users",
+          "localhost:8080/api/v1/auth/**"
         )
         .permitAll()
 
 
-        .requestMatchers("/api/v1/management/**").hasAnyRole("ADMIN", "MANAGER")
-        .requestMatchers("/api/staff/**").hasAnyRole("ADMIN", "MANAGER","STAFF")
-
-        .requestMatchers(HttpMethod.GET, "/api/v1/management/**").hasAnyAuthority("ADMIN_READ", "MANAGER_READ")
-        .requestMatchers(HttpMethod.POST, "/api/v1/management/**").hasAnyAuthority("ADMIN_CREATE", "MANAGER_CREATE")
-        .requestMatchers(HttpMethod.PUT, "/api/v1/management/**").hasAnyAuthority("ADMIN_UPDATE", "MANAGER_UPDATE")
-        .requestMatchers(HttpMethod.DELETE, "/api/v1/management/**").hasAnyAuthority("ADMIN_DELETE", "MANAGER_DELETE")
-
+        //.requestMatchers("/api/admin/**").hasAnyRole("ADMIN", "MANAGER")
+        
         .anyRequest()
           .authenticated()
         .and()
@@ -75,4 +70,6 @@ public class SecurityConfiguration {
 
     return http.build();
   }
+
+  
 }

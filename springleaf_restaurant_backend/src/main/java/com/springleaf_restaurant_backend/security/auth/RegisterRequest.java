@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 public class RegisterRequest {
   private String firstName;
   private String lastName;
-  private String userName;
+  private String username;
   private String password;
   private String phone;
   private String email;
   private String address;
   private String image;
-  private String manager_id;
-  private String restaurant_id;
+  private Long managerId;
+  private Long restaurantBrachId;
   private Integer roleId;
 }

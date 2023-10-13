@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.springleaf_restaurant_backend.security.token.Token;
 
 import jakarta.persistence.*;
@@ -62,6 +63,7 @@ public class User implements UserDetails {
     @Transient
     private String roleName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 

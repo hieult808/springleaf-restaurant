@@ -16,7 +16,7 @@ public class UserRestController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/users")
+    @GetMapping("/admin/users")
     public List<User> getUser() {
         return userRepository.findAll();
     }
