@@ -1,0 +1,71 @@
+/* CSS cho div tổng */
+.login-container {
+  width: auto;
+  height: auto; 
+  padding-bottom: 30px;
+  border-radius: 5px; 
+  text-align: center;
+  display: flex; /* Sử dụng hiển thị linh hoạt để căn giữa nội dung */
+  flex-direction: column; /* Hiển thị nội dung theo cột dọc */
+  align-items: center; /* Căn giữa theo chiều ngang */
+}
+
+/* CSS cho tiêu đề */
+h2 {
+  width: 100%;
+  font-size: 30px; /* Kích thước chữ */
+  margin-bottom: 50px; /* Loại bỏ khoảng cách phía dưới */
+  background-color: #007bff; /* Màu nền */
+  color: #fff; /* Màu chữ */
+  font-family: Arial, sans-serif; /* Font chữ */
+  padding: 15px; /* Khoảng cách bên trong */
+  text-align: center; /* Canh giữa nội dung */
+  border-radius: 5px 5px 0 0;
+}
+
+/* CSS cho trường nhập và nút */
+input, .login-button {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 10px 50px; 
+}
+
+/* CSS cho nút */
+.login-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+/* CSS cho nút đăng nhập Google */
+.google-login-button {
+  width: 90%;
+  background-color: #FF5722; 
+  color: #fff; /* Màu chữ trắng */
+  border: none;
+  padding: 10px 20px; /* Khoảng cách bên trong nút */
+  border-radius: 5px; /* Góc bo tròn */
+  cursor: pointer;
+}
+
+
+/* CSS cho liên kết Đăng ký và Quên mật khẩu */
+a {
+  text-decoration: none; /* Loại bỏ gạch chân mặc định trên liên kết */
+  color: #007bff; /* Màu chữ liên kết */
+  margin-right: 10px; /* Khoảng cách phía bên phải */
+  display: block; /* Hiển thị mỗi liên kết trên một hàng riêng */
+  margin-bottom: 10px; /* Khoảng cách phía dưới mỗi liên kết */
+}
+
+a:hover {
+  text-decoration: underline; /* Gạch chân liên kết khi di chuột qua */
+  color: #FF5722;
+}

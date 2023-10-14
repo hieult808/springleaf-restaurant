@@ -33,8 +33,7 @@ export class UserHeaderComponent {
   }
 
   openLoginModal() {
-    const modalRef = this.modalService.open(LoginComponent, { size: 'lg' });
-    //modalRef.componentInstance.product = product;
+    const modalRef = this.modalService.open(LoginComponent);
   }
 
   ngOnInit(): void {

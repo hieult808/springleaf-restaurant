@@ -53,7 +53,7 @@
         <ul class="navbar-nav mx-auto">
             <div class="nav-item" *ngIf="user">
                 <!-- Hiển thị thông tin người dùng khi user khác null -->
-                <p>Welcome, {{ user.username }}!</p>
+                <p>{{ user.username }}!</p>
                 <!-- Đặc điểm của người dùng khác có thể thêm vào đây -->
             </div>
             <li class="nav-item" *ngIf="!user">

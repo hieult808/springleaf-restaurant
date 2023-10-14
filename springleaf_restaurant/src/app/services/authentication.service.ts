@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { User } from '../interfaces/user';
 
 @Injectable({
@@ -36,23 +36,37 @@ export class AuthenticationService {
       userName: username,
       password: password
     };
-
-    return this.http.post(`${this.apiUrl}/authenticate`, loginData);
+  
+    return this.http.post(`${this.apiUrl}/authenticate`, loginData).pipe(
+      map((response: any) => {
+        localStorage.setItem('access_token', response.access_token);
+        localStorage.setItem('refresh_token', response.refresh_token);
+        console.log(response)
+        return response;
+      })
+    );
   }
 
-  refreshToken(refreshToken: string): Observable<any> {
-    const tokenData = {
-      refreshToken: refreshToken
-    };
+  // AuthenticationService trong Angular
+refreshToken(refreshToken: string): Observable<any> {
+  const tokenData = {
+    refreshToken: refreshToken
+  };
 
-    return this.http.post(`${this.apiUrl}/refreshToken`, tokenData);
-  }
+  return this.http.post(`${this.apiUrl}/refreshToken`, tokenData).pipe(
+    map((response: any) => {
+      // Lưu trữ JWT mới sau khi làm mới token vào Local Storage
+      localStorage.setItem('jwtToken', response.accessToken);
+      return response;
+    })
+  );
+}
 
-  logout() {
-    // Xóa token JWT khỏi lưu trữ khi đăng xuất
-    localStorage.removeItem('jwtToken');
-    this.setUserCache(null); // Xóa dữ liệu người dùng khỏi userCache
-  }
+
+logout() {
+  // Xóa token JWT khỏi Local Storage khi đăng xuất
+  localStorage.removeItem('jwtToken');
+}
 
   getToken(): string | null {
     // Lấy token JWT từ lưu trữ

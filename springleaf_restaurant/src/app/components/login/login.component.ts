@@ -55,4 +55,7 @@ export class LoginComponent {
       console.error('Please enter both username and password.');
     }
   }
+  logout(){
+    this.authService.logout;
+  }
 }
